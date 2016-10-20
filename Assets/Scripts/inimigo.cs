@@ -1,15 +1,30 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class inimigo : MonoBehaviour {
+public class Inimigo : MonoBehaviour
+{
 
-	// Use this for initialization
-	void Start () {
+    [SerializeField]
+    private float vida;
+
+
+    // Use this for initialization
+    void Start()
+    {
         NavMeshAgent agente = GetComponent<NavMeshAgent>();
         GameObject fimdocaminho = GameObject.Find("FimDoCaminho");
         Vector3 posicaoDofimCaminho = fimdocaminho.transform.position;
         agente.SetDestination(posicaoDofimCaminho);
 
-	}
- 
+    }
+
+    public void RecebeDano(int pontosDeDano)
+    {
+        vida -= pontosDeDano;
+        if (vida <= 0)
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
 }
