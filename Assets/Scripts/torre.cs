@@ -51,6 +51,7 @@ public class torre : MonoBehaviour {
 
         return null;
     }
+
     private bool EstaNoRaioDeAlcance(GameObject inimigo)
     {
         Vector3 posicaoDaTorre = this.transform.position;
