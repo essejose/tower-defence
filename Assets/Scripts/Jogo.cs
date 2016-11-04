@@ -5,7 +5,15 @@ public class Jogo : MonoBehaviour {
 
     [SerializeField]
     private GameObject torrePrefab;
+    [SerializeField]
+    private GameObject gameOver;
+    [SerializeField]
+    private Jogador jogador;
 
+
+    void Start() {
+        gameOver.SetActive(false);
+    }
     private bool ClicouComBotaoPrimario ()
     {
         
@@ -13,13 +21,23 @@ public class Jogo : MonoBehaviour {
     }
 	// Update is called once per frame
 	void Update () {
-        
+
+        Debug.Log(jogoAcabou());
+        if (jogoAcabou())
+        {
+            gameOver.SetActive(true);
+        }
+
         if (ClicouComBotaoPrimario())
         {
             ControiTorre();
         }
 
 	}
+    private bool jogoAcabou()
+    {
+        return !jogador.Estavivo();
+    }
 
     void ControiTorre()
     {

@@ -10,5 +10,16 @@ public class Jogador : MonoBehaviour {
     {
         return vida;
     }
-	
+    public void PerdeVida()
+    {
+        if (Estavivo())
+        {
+            vida--;
+        }
+    }
+    public bool Estavivo()
+    {
+        return vida > 0;
+    }
+
 }
