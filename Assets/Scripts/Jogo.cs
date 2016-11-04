@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
-public class Jogo : MonoBehaviour {
+public class Jogo : MonoBehaviour
+{
 
     [SerializeField]
     private GameObject torrePrefab;
@@ -11,16 +13,16 @@ public class Jogo : MonoBehaviour {
     private Jogador jogador;
 
 
-    void Start() {
+    void Start()
+    {
         gameOver.SetActive(false);
     }
-    private bool ClicouComBotaoPrimario ()
+    private bool ClicouComBotaoPrimario()
     {
-        
         return Input.GetMouseButtonDown(0);
     }
-	// Update is called once per frame
-	void Update () {
+    void Update()
+    {
 
         Debug.Log(jogoAcabou());
         if (jogoAcabou())
@@ -33,10 +35,15 @@ public class Jogo : MonoBehaviour {
             ControiTorre();
         }
 
-	}
+    }
     private bool jogoAcabou()
     {
         return !jogador.Estavivo();
+    }
+
+    public void RecomecaJogo()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     void ControiTorre()
@@ -45,7 +52,7 @@ public class Jogo : MonoBehaviour {
         RaycastHit elementoAtingidoPeloRaio = DisparaRaioDaCameraAteUmPonto(posicaoDoClique);
 
         Debug.Log(elementoAtingidoPeloRaio);
-        if(elementoAtingidoPeloRaio.collider != null)
+        if (elementoAtingidoPeloRaio.collider != null)
         {
             Vector3 posicaoDeCriacaoDaTorre = elementoAtingidoPeloRaio.point;
             Instantiate(torrePrefab, posicaoDeCriacaoDaTorre, Quaternion.identity);
@@ -58,7 +65,7 @@ public class Jogo : MonoBehaviour {
         RaycastHit elementoAtingidoPeloRaio;
         float comprimentoMaximoDoRaio = 100.0f;
 
-        Physics.Raycast(raio, out elementoAtingidoPeloRaio,comprimentoMaximoDoRaio);
+        Physics.Raycast(raio, out elementoAtingidoPeloRaio, comprimentoMaximoDoRaio);
 
         return elementoAtingidoPeloRaio;
     }
