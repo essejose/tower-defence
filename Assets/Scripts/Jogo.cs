@@ -12,10 +12,12 @@ public class Jogo : MonoBehaviour
     [SerializeField]
     private Jogador jogador;
 
-
+    private GameObject light;
     void Start()
     {
         gameOver.SetActive(false);
+
+        light.GetComponent<GameObject>();
     }
     private bool ClicouComBotaoPrimario()
     {
